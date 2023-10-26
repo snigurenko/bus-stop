@@ -1,14 +1,21 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex"
+import createPersistedState from "vuex-persistedstate";
+
+import stopsList from "./modules/stopsList";
+import busLines from "./modules/busLines";
+
+const plugins = [
+  createPersistedState({
+    paths: ["timetable"],
+  }),
+];
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+  plugins,
   modules: {
-  }
+    stopsList,
+    busLines,
+  },
+  devtools: true,
 })
+ 

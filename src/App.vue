@@ -1,3 +1,8 @@
 <template>
-    <div class="bg-blue-500 p-4 rounded-lg">test</div>
+    <span>Timetable</span>
+    <NavBar />
+    <router-view />
 </template>
+<script setup lang="ts">
+import NavBar from '@/components/NavBar.vue';
+</script>
