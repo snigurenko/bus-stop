@@ -1,8 +1,8 @@
 import { createStore } from "vuex"
 import createPersistedState from "vuex-persistedstate";
 
-import stopsList from "./modules/stopsList";
-import busLines from "./modules/busLines";
+import stops from "./modules/stops";
+import lines from "./modules/lines";
 
 const plugins = [
   createPersistedState({
@@ -13,8 +13,8 @@ const plugins = [
 export default createStore({
   plugins,
   modules: {
-    stopsList,
-    busLines,
+    lines,
+    stops,
   },
   devtools: true,
 })
