@@ -9,12 +9,12 @@
                 class="list-select__label m-0 p-4 border-bottom border-2 border-light"
                 :class="{'pe-2': sortable}"
             >{{label}}</h6>
-            <SortableIcon v-if="sortable"/>
+            <ArrowsIcon v-if="sortable"/>
         </div>
         <ul class="list-unstyled">
             <li
                 v-for="item in preparedItemsList"
-                :key="item + additionalKeyContext"
+                :key="item + search"
                 class="list-select__item"
                 :class="{active: modelValue === item}"
                 @click="onItemSelect(item)"
@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import SortableIcon from '../assets/icons/SortableIcon.vue';
+import ArrowsIcon from '../assets/icons/ArrowsIcon.vue';
 
 type SortDirection = 'ASC' | 'DESC';
 
@@ -43,7 +43,7 @@ const props = defineProps({
     modelValue: {
         type: [Number, String],
     },
-    additionalKeyContext: {
+    search: {
         default: ''
     },
     sortable: {

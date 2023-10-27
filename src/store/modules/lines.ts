@@ -23,7 +23,10 @@ const lines: Module<State, unknown> = {
         },
          getStopsTime: (state) => (line: number, stop: string) => {
             return state.bunchOfLines.get(line)?.get(stop);
-        }
+        },
+        getStopsNames (state) {
+            return [...new Set(state.lines.map((x) => x.stop))];
+        },
     },
     mutations: {
         setLines (state, payload: Timetable[]) {

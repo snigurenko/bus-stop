@@ -1,9 +1,8 @@
 <template>
-    <span>{{ selectedStop }}</span>
     <div v-if="loading" class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
     </div>
-    <div v-else class="d-flex flex-column flex-grow-1">
+    <div v-else class="d-flex flex-column flex-grow-1 temp">
         <div class="mt-3 p-4 bg-white rounded-1">
             <h6>Select Bus Line</h6>
             <div class="d-flex flex-row flex-wrap gap-2">
@@ -17,14 +16,14 @@
             </button>
             </div>
         </div>
-        <div class="d-flex flex-grow-1 gap-3 mt-3">
-            <div v-if="!selectedBus" class="w-50 empty-content d-flex border border-2 border-secondary rounded-1">
+        <div class="d-flex gap-3 mt-3 box">
+            <div v-if="!selectedBus" class="w-50 box-content d-flex border border-2 border-secondary rounded-1">
                 <p class="m-auto">Please select the bus line first</p>
             </div>
 
-            <div v-else class="d-flex flex-column bg-white w-50">
+            <div v-else class="d-flex flex-column bg-white w-50 font12">
                 <div class="p-4 pb-0">
-                    <h6>Bus Line: {{selectedBus}}</h6>
+                    <h6>Bus Stops: {{selectedBus}}</h6>
                 </div>
                 <TSelect
                     label="Bus Lines"
@@ -33,10 +32,10 @@
                     sortable
                 />
             </div>
-            <div v-if="!selectedStop" class="w-50 empty-content d-flex border border-2 border-secondary rounded-1">
+            <div v-if="!selectedStop" class="w-50 box-content d-flex border border-2 border-secondary rounded-1">
                 <p class="m-auto">Please select the bus stop first</p>
             </div>
-            <div v-else class="d-flex flex-column bg-white w-50">
+            <div v-else class="d-flex flex-column bg-white w-50 font12">
                 <div class="p-4 pb-0">
                     <h6>Bus Stop: {{selectedStop}}</h6>
                 </div>
@@ -58,10 +57,9 @@ import TSelect from '@/components/TSelect.vue';
 import { Timetable } from '@/interface/Timetable';
 
 const store = useStore();
-store.dispatch('fetchTimetable');
 
 const selectedBus = ref<number | null>(null);
-const selectedStop = ref<string | null>(null);
+const selectedStop = ref<string>("");
 const stops = ref<string[]>([]);
 
 const loading = computed(() => store.getters.loading);
@@ -69,6 +67,7 @@ const lines = computed(() => store.getters.getLines);
 
 const selectBus = (bus: number) => {
     selectedBus.value = bus;
+    selectedStop.value = "";
 };
 
 const stopsFromStore = computed(() => {
@@ -100,7 +99,13 @@ watch(selectedBus, (newBus) => {
 </script>
 
 <style scoped>
-.empty-content {
+.box-content {
     --bs-border-style: dashed;
+}
+.box {
+    height: 50vw;
+}
+.font12 {
+    font-size: 12px;
 }
 </style>
