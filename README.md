@@ -45,3 +45,15 @@ Your have to implement simple board for bus stops. Directory `docs` contains `op
    5. User can filter list by the search bar
       1. The "stops" list should be filtered after user input
       2. If search bar is empty all stops should be visible
+
+## NOTES: 
+1. There was  an error when started: 
+
+*  ERROR  Failed to compile with 1 error                                                                                                                                            3:36:40 PM
+*  error  in external "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap"
+* The target environment doesn't support dynamic import() syntax so it's not possible to use external type 'module' within a script
+
+So I crteated a styles folder with main file inside and import font there. 
+
+2. finaly I decided no use moduls in store, as all needed data covers by one fetch
+

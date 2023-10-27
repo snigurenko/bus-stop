@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="d-flex gap-3 mt-3 box">
-            <div v-if="!selectedBus" class="w-50 box-content d-flex border border-2 border-secondary rounded-1">
+            <div v-if="!selectedBus" class="w-50 box-content d-flex">
                 <p class="m-auto">Please select the bus line first</p>
             </div>
 
@@ -32,7 +32,7 @@
                     sortable
                 />
             </div>
-            <div v-if="!selectedStop" class="w-50 box-content d-flex border border-2 border-secondary rounded-1">
+            <div v-if="!selectedStop" class="w-50 box-content d-flex">
                 <p class="m-auto">Please select the bus stop first</p>
             </div>
             <div v-else class="d-flex flex-column bg-white w-50 font12">
@@ -99,9 +99,25 @@ watch(selectedBus, (newBus) => {
 </script>
 
 <style scoped>
-.box-content {
-    --bs-border-style: dashed;
+div.box-content:before {
+  content: "";
+  position: absolute;
+  border: 10px dashed #63666E;
+  top: -8px;
+  bottom: -8px;
+  left: -8px;
+  right: -8px;
+  border-radius: 4px;
 }
+.box-content {
+  overflow: hidden;
+  position: relative;
+  text-align:center;
+  padding:10px;
+  margin-bottom:20px;
+  border-radius: 3px;
+}
+
 .box {
     height: 50vw;
 }

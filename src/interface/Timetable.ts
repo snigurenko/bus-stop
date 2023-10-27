@@ -1,6 +1,6 @@
 export interface Timetable {
   line: number
-  order: number
   stop: string
+  order: number
   time: string
 }
