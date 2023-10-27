@@ -1,5 +1,3 @@
-import { Module } from 'vuex';
-
 export const stopsList: any = {
   getters: {
   // stub
