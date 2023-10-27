@@ -1,5 +1,8 @@
 <template>
-    <div class="mt-3 bg-white rounded-1">
+    <div v-if="loading" class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div v-else class="mt-3 bg-white rounded-1">
         <div class="p-2 grid">
             <div class="position-relative col-12 col-sm-4">
                 <input
@@ -31,6 +34,7 @@ import SearchIcon from '../assets/icons/SearchIcon.vue';
 const store = useStore();
 const searchValue = ref<string>("");
 
+const loading = computed(() => store.getters.loading);
 const stopsNames = computed(() => {
   return searchValue.value
     ? store.getters.getStopsNames.filter((stopName: string) =>
